@@ -1,0 +1,30 @@
+<div class="cr-otp-step">
+  <p class="cr-hint">
+    We sent a 6-digit code to <strong>{{ email }}</strong>
+  </p>
+
+  <div class="cr-otp-boxes" (paste)="onPaste($event)">
+    @for (digit of digits(); track $index) {
+      <input
+        #digitInput
+        class="cr-otp-box"
+        type="text"
+        inputmode="numeric"
+        maxlength="1"
+        [value]="digit"
+        [disabled]="loading"
+        (input)="onDigitInput($index, $event)"
+        (keydown)="onKeydown($index, $event)"
+        autocomplete="one-time-code"
+      />
+    }
+  </div>
+
+  @if (touched() && code().length < 6) {
+    <p class="cr-error" style="text-align: center">Enter all 6 digits.</p>
+  }
+
+  <button type="button" class="cr-btn-primary" [disabled]="loading" (click)="onSubmit()">
+    {{ loading ? 'Verifying…' : 'Verify OTP' }}
+  </button>
+</div>

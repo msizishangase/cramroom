@@ -1,0 +1,8 @@
+<div class="cr-step-indicator">
+  <div class="cr-step-dots">
+    @for (step of steps; track step) {
+      <span class="cr-step-dot" [class.active]="step <= current"></span>
+    }
+  </div>
+  <span class="cr-step-label">Step {{ current }} of {{ total }}</span>
+</div>

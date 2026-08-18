@@ -1,0 +1,129 @@
+@use 'tokens' as *;
+
+.cr-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cr-label {
+  font-size: 0.8rem;
+  color: var(--cr-graphite);
+}
+
+.cr-hint {
+  font-size: 0.88rem;
+  color: var(--cr-graphite);
+  text-align: center;
+}
+
+.cr-input {
+  width: 100%;
+  background: var(--cr-paper-dark-2);
+  border: 1px solid var(--cr-border);
+  border-radius: var(--cr-radius-sm);
+  padding: 12px 14px;
+  color: var(--cr-paper);
+  font-family: inherit;
+
+  &:focus {
+    outline: none;
+    border-color: var(--cr-orange);
+    box-shadow: 0 0 0 3px var(--cr-orange-dim);
+  }
+
+  // Dark-mode autofill fix — Chrome forces a light background otherwise
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--cr-paper);
+    -webkit-box-shadow: 0 0 0px 1000px var(--cr-paper-dark-2) inset;
+    transition: background-color 9999s ease-in-out 0s;
+  }
+}
+
+.cr-input-wrapper {
+  position: relative;
+
+  .cr-input {
+    padding-right: 46px;
+  }
+}
+
+.cr-input-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--cr-graphite);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 6px;
+
+  &:hover {
+    color: var(--cr-orange);
+  }
+}
+
+.cr-error {
+  color: var(--cr-orange);
+  font-size: 0.78rem;
+}
+
+.cr-error-block {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.cr-btn-primary {
+  background: var(--cr-orange);
+  color: var(--cr-void);
+  font-weight: 700;
+  font-family: inherit;
+  border: none;
+  border-radius: var(--cr-radius-sm);
+  padding: 13px;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    opacity 0.15s ease;
+
+  &:hover:not(:disabled) {
+    background: #ff8c3a;
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}
+
+.cr-input-wrapper {
+  position: relative;
+
+  .cr-input {
+    padding-right: 64px;
+  }
+}
+
+.cr-input-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  border-left: 1px solid var(--cr-border);
+  padding-left: 12px;
+  color: var(--cr-graphite);
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--cr-orange);
+  }
+}

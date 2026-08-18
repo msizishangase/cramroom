@@ -1,0 +1,45 @@
+<div class="cr-auth-layout">
+  <aside class="cr-auth-panel">
+    <div class="cr-auth-panel-inner">
+      <div class="cr-brand">CRAMROOM</div>
+
+      <div class="cr-auth-panel-copy">
+        <h2>Turn your notes into your class's favourite competition.</h2>
+        <p>
+          Upload your notes, AI builds the quiz, and you challenge your crew to beat your score.
+        </p>
+      </div>
+
+      <div>
+        <p class="cr-panel-caption">What your next study session looks like</p>
+        <app-ticket-demo />
+      </div>
+    </div>
+  </aside>
+
+  <main class="cr-auth-form-panel">
+    <div class="cr-auth-form-wrap">
+      <div class="cr-brand cr-brand-center cr-brand-mobile">CRAMROOM</div>
+
+      <app-step-indicator [total]="2" [current]="step() === 'credentials' ? 1 : 2" />
+
+      @if (step() === 'credentials') {
+        <p class="cr-title">Create your account</p>
+        <p class="cr-subtitle">Just your email and a password to start.</p>
+        <app-credentials-step [loading]="loading()" (submitted)="onCredentialsSubmitted($event)" />
+      } @else {
+        <p class="cr-title">Verify your email</p>
+        <p class="cr-subtitle">Check your inbox for the code.</p>
+        <app-otp-step
+          [email]="email()"
+          [loading]="loading()"
+          (submitted)="onOtpSubmitted($event)"
+        />
+      }
+
+      @if (errorMessage()) {
+        <p class="cr-error cr-error-block">{{ errorMessage() }}</p>
+      }
+    </div>
+  </main>
+</div>

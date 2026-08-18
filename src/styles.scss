@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'app/shared/styles/tokens';
+@use 'app/shared/styles/fonts';
+@use 'app/shared/styles/form';
+@use 'app/shared/styles/layout';
+
+body {
+  margin: 0;
+  font-family: var(--cr-font-family);
+  background: var(--cr-void);
+  color: var(--cr-paper);
+}

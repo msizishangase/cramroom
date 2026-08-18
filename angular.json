@@ -33,6 +33,14 @@
             "styles": ["src/styles.scss"]
           },
           "configurations": {
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ]
+            },
             "production": {
               "budgets": [
                 {

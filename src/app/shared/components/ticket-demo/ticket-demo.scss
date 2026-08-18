@@ -1,0 +1,247 @@
+@use '../../styles/tokens' as *;
+
+.ticket {
+  position: relative;
+  background: var(--cr-paper-dark-2);
+  border: 1px solid var(--cr-border);
+  border-radius: var(--cr-radius-lg);
+  padding: 22px 22px 20px;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+  max-width: 340px;
+}
+.ticket::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 64px;
+  border-top: 1.5px dashed var(--cr-border);
+}
+.ticket-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--cr-graphite);
+  padding-bottom: 20px;
+}
+.ticket-head .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cr-orange);
+  display: inline-block;
+  margin-right: 6px;
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+.ticket-q {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--cr-paper);
+  margin: 22px 0 16px;
+  line-height: 1.4;
+}
+.ticket-q .qnum {
+  color: var(--cr-orange);
+}
+.ticket-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+.ticket-opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 7px;
+  border: 1px solid var(--cr-border);
+  font-size: 0.82rem;
+  color: var(--cr-graphite);
+}
+.ticket-opt .letter {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: var(--cr-paper-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--cr-graphite-dim);
+  flex-shrink: 0;
+}
+.ticket-opt.answer {
+  animation: reveal-option 7s ease infinite;
+}
+.ticket-opt.answer .letter {
+  animation: reveal-letter 7s ease infinite;
+}
+.tick {
+  margin-left: auto;
+  width: 16px;
+  height: 16px;
+  color: var(--cr-orange);
+  flex-shrink: 0;
+  animation: reveal-tick 7s ease infinite;
+}
+.ticket-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1.5px dashed var(--cr-border);
+  padding-top: 16px;
+}
+.ticket-foot .label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--cr-graphite-dim);
+}
+.rank-stack {
+  position: relative;
+  height: 28px;
+  width: 44px;
+}
+.rank-stack span {
+  position: absolute;
+  inset: 0;
+  font-weight: 800;
+  font-size: 1.4rem;
+  color: var(--cr-paper);
+}
+.rank-old {
+  animation: rank-old 7s ease infinite;
+}
+.rank-new {
+  color: var(--cr-orange);
+  animation: rank-new 7s ease infinite;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+@keyframes reveal-option {
+  0%,
+  16% {
+    background: transparent;
+    border-color: var(--cr-border);
+  }
+  24%,
+  80% {
+    background: var(--cr-orange-dim);
+    border-color: var(--cr-orange);
+  }
+  94%,
+  100% {
+    background: transparent;
+    border-color: var(--cr-border);
+  }
+}
+@keyframes reveal-letter {
+  0%,
+  16% {
+    background: var(--cr-paper-dark);
+    color: var(--cr-graphite-dim);
+  }
+  24%,
+  80% {
+    background: var(--cr-orange);
+    color: var(--cr-void);
+  }
+  94%,
+  100% {
+    background: var(--cr-paper-dark);
+    color: var(--cr-graphite-dim);
+  }
+}
+@keyframes reveal-tick {
+  0%,
+  20% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  28%,
+  80% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  94%,
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+@keyframes rank-old {
+  0%,
+  38% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  46%,
+  88% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  97%,
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes rank-new {
+  0%,
+  38% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  46%,
+  88% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  97%,
+  100% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticket-head .dot,
+  .ticket-opt.answer,
+  .ticket-opt.answer .letter,
+  .tick,
+  .rank-old,
+  .rank-new {
+    animation: none !important;
+  }
+  .ticket-opt.answer {
+    background: var(--cr-orange-dim);
+    border-color: var(--cr-orange);
+  }
+  .ticket-opt.answer .letter {
+    background: var(--cr-orange);
+    color: var(--cr-void);
+  }
+  .tick {
+    opacity: 1;
+    transform: none;
+  }
+  .rank-old {
+    opacity: 0;
+  }
+  .rank-new {
+    opacity: 1;
+  }
+}
